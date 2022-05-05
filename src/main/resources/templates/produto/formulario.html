@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Produto</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron mb-0">
+            <h1 class="display-4">Novo Pedido</h1>
+        </div>
+        <form action="produto/novo" method="POST">
+            <div>
+                <label>Produto</label>
+                <input name="nomeProduto" placeholder="Nome do Produto"/>
+            </div>
+
+            <div>
+                <label>Descrição</label>
+                <textarea name="descricaoProduto" placeholder="Adicione Descricao do Produto"></textarea>
+            </div>
+
+            <div>
+                <label>Preço</label>
+                <input name="precoProduto" placeholder="Preço do Produto"/>
+            </div>
+
+            <div>
+                <label >Preço Promocional</label>
+                <input name="precoPromocionalProduto" placeholder="Preço Promocional do Produto"/>
+            </div>
+
+            <div>
+                <label>Classe Fiscal</label>
+                <input name="classeFiscalProduto" placeholder="Classe Fiscal do Produto"/>
+            </div>
+
+            <div>
+                <label>URL</label>
+                <input name="urlProduto" placeholder="Url do Produto"/>
+            </div>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+</body>
+</html>
