@@ -24,4 +24,28 @@ public class Produto {
 
     @Column(length = 10)
     private String classeFiscalProduto;
+
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
+
+    public void setUrlProduto(String urlProduto) {
+        this.urlProduto = urlProduto;
+    }
+
+    public void setDescricaoProduto(String descricaoProduto) {
+        this.descricaoProduto = descricaoProduto;
+    }
+
+    public void setPrecoProduto(BigDecimal precoProduto) {
+        this.precoProduto = precoProduto;
+    }
+
+    public void setPrecoPromocionalProduto(BigDecimal precoPromocionalProduto) {
+        this.precoPromocionalProduto = precoPromocionalProduto;
+    }
+
+    public void setClasseFiscalProduto(String classeFiscalProduto) {
+        this.classeFiscalProduto = classeFiscalProduto;
+    }
 }
