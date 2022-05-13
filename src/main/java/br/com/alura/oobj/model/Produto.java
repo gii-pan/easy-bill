@@ -3,49 +3,80 @@ package br.com.alura.oobj.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
+@Entity(name = "produtos")
 public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 150, nullable = false)
-    private String nomeProduto;
+    @Column(length = 150, nullable = false, name = "nome")
+    private String nome;
 
-    @Column(length = 500, nullable = false)
-    private String urlProduto;
+    @Column(length = 500, nullable = false, name = "url")
+    private String url;
 
-    @Column(length = 1000)
-    private String descricaoProduto;
+    @Column(length = 1000, name = "descricao")
+    private String descricao;
 
-    private BigDecimal precoProduto;
-    private BigDecimal precoPromocionalProduto;
+    @Column(nullable = false, name = "preco")
+    private BigDecimal preco;
 
-    @Column(length = 10)
-    private String classeFiscalProduto;
+    @Column(name = "preco_promocional")
+    private BigDecimal precoPromocional;
 
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
+    @Column(length = 10, nullable = false, name = "classe_fiscal")
+    private String classeFiscal;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setUrlProduto(String urlProduto) {
-        this.urlProduto = urlProduto;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDescricaoProduto(String descricaoProduto) {
-        this.descricaoProduto = descricaoProduto;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public void setPrecoProduto(BigDecimal precoProduto) {
-        this.precoProduto = precoProduto;
+    public String getUrl() {
+        return url;
     }
 
-    public void setPrecoPromocionalProduto(BigDecimal precoPromocionalProduto) {
-        this.precoPromocionalProduto = precoPromocionalProduto;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public void setClasseFiscalProduto(String classeFiscalProduto) {
-        this.classeFiscalProduto = classeFiscalProduto;
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
+
+    public BigDecimal getPrecoPromocional() {
+        return precoPromocional;
+    }
+
+    public void setPrecoPromocional(BigDecimal precoPromocional) {
+        this.precoPromocional = precoPromocional;
+    }
+
+    public String getClasseFiscal() {
+        return classeFiscal;
+    }
+
+    public void setClasseFiscal(String classeFiscal) {
+        this.classeFiscal = classeFiscal;
     }
 }

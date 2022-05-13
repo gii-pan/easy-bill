@@ -8,74 +8,77 @@ import java.math.BigDecimal;
 public class RequisicaoNovoProduto {
     @NotBlank
     @Size(max = 150)
-    private String nomeProduto;
+    private String nome;
     @Size(max = 1000)
-    private String descricaoProduto;
-    private BigDecimal precoProduto;
-    private BigDecimal precoPromocionalProduto;
+    private String descricao;
+    @NotBlank
+    @DecimalMin("0.01")
+    private BigDecimal preco;
+    @DecimalMin("0.01")
+    private BigDecimal precoPromocional;
     @NotBlank
     @Size(max= 10)
-    private String classeFiscalProduto;
+    private String classeFiscal;
     @NotBlank
     @Size(max = 500)
-    private String urlProduto;
+    private String url;
 
-    public String getNomeProduto() {
-        return nomeProduto;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getDescricaoProduto() {
-        return descricaoProduto;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDescricaoProduto(String descricaoProduto) {
-        this.descricaoProduto = descricaoProduto;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public BigDecimal getPrecoProduto() {
-        return precoProduto;
+    public BigDecimal getPreco() {
+        return preco;
     }
 
-    public void setPrecoProduto(BigDecimal precoProduto) {
-        this.precoProduto = precoProduto;
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
     }
 
-    public BigDecimal getPrecoPromocionalProduto() {
-        return precoPromocionalProduto;
+    public BigDecimal getPrecoPromocional() {
+        return precoPromocional;
     }
 
-    public void setPrecoPromocionalProduto(BigDecimal precoPromocionalProduto) {
-        this.precoPromocionalProduto = precoPromocionalProduto;
+    public void setPrecoPromocional(BigDecimal precoPromocional) {
+        this.precoPromocional = precoPromocional;
     }
 
-    public String getClasseFiscalProduto() {
-        return classeFiscalProduto;
+    public String getClasseFiscal() {
+        return classeFiscal;
     }
 
-    public void setClasseFiscalProduto(String classeFiscalProduto) {
-        this.classeFiscalProduto = classeFiscalProduto;
+    public void setClasseFiscal(String classeFiscal) {
+        this.classeFiscal = classeFiscal;
     }
 
-    public String getUrlProduto() {
-        return urlProduto;
+    public String getUrl() {
+        return url;
     }
 
-    public void setUrlProduto(String urlProduto) {
-        this.urlProduto = urlProduto;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Produto toProduto() {
         Produto produto = new Produto();
-        produto.setNomeProduto(nomeProduto);
-        produto.setDescricaoProduto(descricaoProduto);
-        produto.setUrlProduto(urlProduto);
-        produto.setPrecoProduto(precoProduto);
-        produto.setPrecoPromocionalProduto(precoPromocionalProduto);
-        produto.setClasseFiscalProduto(classeFiscalProduto);
+        produto.setNome(nome);
+        produto.setDescricao(descricao);
+        produto.setUrl(url);
+        produto.setPreco(preco);
+        produto.setPrecoPromocional(precoPromocional);
+        produto.setClasseFiscal(classeFiscal);
         return produto;
     }
 }
