@@ -1,4 +1,4 @@
-package br.com.alura.oobj;
+package br.com.alura.easybill;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

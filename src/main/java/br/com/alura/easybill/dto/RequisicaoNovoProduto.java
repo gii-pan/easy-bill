@@ -1,36 +1,28 @@
-package br.com.alura.oobj.model;
+package br.com.alura.easybill.dto;
 
-import javax.persistence.*;
+import br.com.alura.easybill.model.Produto;
+
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
-@Entity(name = "produtos")
-public class Produto {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(length = 150, nullable = false, name = "nome")
+public class RequisicaoNovoProduto {
+    @NotBlank
+    @Size(max = 150)
     private String nome;
-
-    @Column(length = 500, nullable = false, name = "url")
-    private String url;
-
-    @Column(length = 1000, name = "descricao")
+    @Size(max = 1000)
     private String descricao;
-
-    @Column(nullable = false, name = "preco")
+    @NotNull
+    @DecimalMin("0.01")
     private BigDecimal preco;
-
-    @Column(name = "preco_promocional")
+    @DecimalMin("0.01")
     private BigDecimal precoPromocional;
-
-    @Column(length = 10, nullable = false, name = "classe_fiscal")
+    @NotBlank
+    @Size(min=10,max= 10)
+    @Pattern(regexp = "^[0-9]{4}[.][0-9]{2}[.][0-9]{2}+$")
     private String classeFiscal;
-
-    public Long getId() {
-        return id;
-    }
+    @NotBlank
+    @Size(max = 500)
+    private String url;
 
     public String getNome() {
         return nome;
@@ -38,14 +30,6 @@ public class Produto {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public String getDescricao() {
@@ -78,5 +62,24 @@ public class Produto {
 
     public void setClasseFiscal(String classeFiscal) {
         this.classeFiscal = classeFiscal;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Produto toProduto() {
+        Produto produto = new Produto();
+        produto.setNome(nome);
+        produto.setDescricao(descricao);
+        produto.setUrl(url);
+        produto.setPreco(preco);
+        produto.setPrecoPromocional(precoPromocional);
+        produto.setClasseFiscal(classeFiscal);
+        return produto;
     }
 }

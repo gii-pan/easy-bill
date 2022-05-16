@@ -1,4 +1,4 @@
-package br.com.alura.oobj.easybill;
+package br.com.alura.easybill.easybill;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,8 +1,8 @@
-package br.com.alura.oobj.controller;
+package br.com.alura.easybill.controller;
 
-import br.com.alura.oobj.dto.DevolucaoProduto;
-import br.com.alura.oobj.model.Produto;
-import br.com.alura.oobj.repository.ProdutoRepository;
+import br.com.alura.easybill.dto.DevolucaoProduto;
+import br.com.alura.easybill.model.Produto;
+import br.com.alura.easybill.repository.ProdutoRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +18,7 @@ public class ProdutoAPIController {
     }
 
     @GetMapping("/api/produtos")
-    public List<DevolucaoProduto> produtos(){
+    public List<DevolucaoProduto> listagemDeProdutos(){
         List<Produto> produtos = produtoRepository.findAll();
         return DevolucaoProduto.converter(produtos);
     }

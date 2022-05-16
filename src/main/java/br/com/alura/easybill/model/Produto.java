@@ -1,27 +1,36 @@
-package br.com.alura.oobj.dto;
+package br.com.alura.easybill.model;
 
-import br.com.alura.oobj.model.Produto;
-
-import javax.validation.constraints.*;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
-public class RequisicaoNovoProduto {
-    @NotBlank
-    @Size(max = 150)
+@Entity(name = "produtos")
+public class Produto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(length = 150, nullable = false, name = "nome")
     private String nome;
-    @Size(max = 1000)
-    private String descricao;
-    @NotBlank
-    @DecimalMin("0.01")
-    private BigDecimal preco;
-    @DecimalMin("0.01")
-    private BigDecimal precoPromocional;
-    @NotBlank
-    @Size(max= 10)
-    private String classeFiscal;
-    @NotBlank
-    @Size(max = 500)
+
+    @Column(length = 500, nullable = false, name = "url")
     private String url;
+
+    @Column(length = 1000, name = "descricao")
+    private String descricao;
+
+    @Column(nullable = false, name = "preco")
+    private BigDecimal preco;
+
+    @Column(name = "preco_promocional")
+    private BigDecimal precoPromocional;
+
+    @Column(length = 10, nullable = false, name = "classe_fiscal")
+    private String classeFiscal;
+
+    public Long getId() {
+        return id;
+    }
 
     public String getNome() {
         return nome;
@@ -29,6 +38,14 @@ public class RequisicaoNovoProduto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getDescricao() {
@@ -61,24 +78,5 @@ public class RequisicaoNovoProduto {
 
     public void setClasseFiscal(String classeFiscal) {
         this.classeFiscal = classeFiscal;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Produto toProduto() {
-        Produto produto = new Produto();
-        produto.setNome(nome);
-        produto.setDescricao(descricao);
-        produto.setUrl(url);
-        produto.setPreco(preco);
-        produto.setPrecoPromocional(precoPromocional);
-        produto.setClasseFiscal(classeFiscal);
-        return produto;
     }
 }

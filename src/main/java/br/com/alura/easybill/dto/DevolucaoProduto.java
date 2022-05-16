@@ -1,10 +1,7 @@
-package br.com.alura.oobj.dto;
+package br.com.alura.easybill.dto;
 
-import br.com.alura.oobj.model.Produto;
+import br.com.alura.easybill.model.Produto;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +20,8 @@ public class DevolucaoProduto {
 
     private String classeFiscal;
 
+    private String url;
+
     public DevolucaoProduto(Produto produto){
         this.id = produto.getId();
         this.nome = produto.getNome();
@@ -30,6 +29,7 @@ public class DevolucaoProduto {
         this.preco = produto.getPreco();
         this.precoPromocional = produto.getPrecoPromocional();
         this.classeFiscal = produto.getClasseFiscal();
+        this.url = produto.getUrl();;
     }
 
     public static List<DevolucaoProduto> converter(List<Produto> produtos){
@@ -59,4 +59,6 @@ public class DevolucaoProduto {
     public String getClasseFiscal() {
         return classeFiscal;
     }
+
+    public String getUrl() {return url; }
 }
