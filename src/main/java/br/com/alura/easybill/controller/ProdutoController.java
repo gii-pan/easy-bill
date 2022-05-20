@@ -17,9 +17,9 @@ import javax.validation.Valid;
 @RequestMapping("/admin")
 public class ProdutoController {
 
-    private ProdutoRepository produtoRepository;
-    private PrecoPromocionalValidator precoPromocionalValidator;
-    private ProdutoAPIController produtoAPIController;
+    private final ProdutoRepository produtoRepository;
+    private final PrecoPromocionalValidator precoPromocionalValidator;
+    private final ProdutoAPIController produtoAPIController;
 
     public ProdutoController(ProdutoRepository produtoRepository, PrecoPromocionalValidator precoPromocionalValidator, ProdutoAPIController produtoAPIController){
         this.produtoRepository = produtoRepository;

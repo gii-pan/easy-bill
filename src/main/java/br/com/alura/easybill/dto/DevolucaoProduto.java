@@ -16,8 +16,6 @@ public class DevolucaoProduto {
 
     private BigDecimal preco;
 
-    private BigDecimal precoPromocional;
-
     private String classeFiscal;
 
     private String url;
@@ -25,15 +23,23 @@ public class DevolucaoProduto {
     public DevolucaoProduto(Produto produto){
         this.id = produto.getId();
         this.nome = produto.getNome();
-        this.descricao = produto.getDescricao();
-        this.preco = produto.getPreco();
-        this.precoPromocional = produto.getPrecoPromocional();
+        this.descricao = getDescricaoResumida(produto.getDescricao());
+        this.preco = produto.getPrecoPromocional() != null ? produto.getPrecoPromocional() : produto.getPreco();
         this.classeFiscal = produto.getClasseFiscal();
         this.url = produto.getUrl();;
     }
 
     public static List<DevolucaoProduto> converter(List<Produto> produtos){
         return produtos.stream().map(DevolucaoProduto::new).collect(Collectors.toList());
+    }
+
+    private String getDescricaoResumida(String descricao){
+        if(descricao.length() <= 250){
+            return descricao;
+        }
+        String descricaoTruncada = descricao.substring(0,247);
+
+        return descricaoTruncada + "...";
     }
 
     public Long getId() {
@@ -50,10 +56,6 @@ public class DevolucaoProduto {
 
     public BigDecimal getPreco() {
         return preco;
-    }
-
-    public BigDecimal getPrecoPromocional() {
-        return precoPromocional;
     }
 
     public String getClasseFiscal() {

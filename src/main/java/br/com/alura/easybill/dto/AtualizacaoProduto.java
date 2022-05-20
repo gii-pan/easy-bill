@@ -1,38 +1,36 @@
 package br.com.alura.easybill.dto;
 
 import br.com.alura.easybill.model.Produto;
+import br.com.alura.easybill.repository.ProdutoRepository;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
-public class RequisicaoNovoProduto {
+public class AtualizacaoProduto {
     @NotBlank
     @Size(max = 150)
     private String nome;
+
     @Size(max = 1000)
     private String descricao;
+
     @NotNull
+    @NotEmpty
     @Positive
     private BigDecimal preco;
+
     @Positive
     private BigDecimal precoPromocional;
+
     @NotBlank
     @Size(min=10,max= 10)
     @Pattern(regexp = "^[\\d]{4}[.][\\d]{2}[.][\\d]{2}+$")
     private String classeFiscal;
+
     @NotBlank
     @Size(max = 500)
     private String url;
 
-    public RequisicaoNovoProduto() {}
-    public RequisicaoNovoProduto(Produto produto) {
-        this.nome = produto.getNome();
-        this.descricao = produto.getDescricao();
-        this.preco = produto.getPreco();
-        this.precoPromocional = produto.getPrecoPromocional();
-        this.classeFiscal = produto.getClasseFiscal();
-        this.url = produto.getUrl();
-    }
     public String getNome() {
         return nome;
     }
@@ -81,14 +79,16 @@ public class RequisicaoNovoProduto {
         this.url = url;
     }
 
-    public Produto toProduto() {
-        Produto produto = new Produto();
-        produto.setNome(nome);
-        produto.setDescricao(descricao);
-        produto.setUrl(url);
-        produto.setPreco(preco);
-        produto.setPrecoPromocional(precoPromocional);
-        produto.setClasseFiscal(classeFiscal);
+    public Produto atualizar(Long id, ProdutoRepository produtoRepository) {
+        Produto produto = produtoRepository.getById(id);
+
+        produto.setNome(this.nome);
+        produto.setDescricao(this.descricao);
+        produto.setUrl(this.url);
+        produto.setPreco(this.preco);
+        produto.setPrecoPromocional(this.precoPromocional);
+        produto.setClasseFiscal(this.classeFiscal);
+
         return produto;
     }
 }

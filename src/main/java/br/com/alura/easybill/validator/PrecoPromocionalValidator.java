@@ -9,7 +9,7 @@ import static java.util.Objects.isNull;
 public class PrecoPromocionalValidator {
 
     public void validacaoPrecoPromocional(RequisicaoNovoProduto requisicaoNovoProduto, BindingResult result){
-        if(isNull(requisicaoNovoProduto.getPreco())){
+        if(isNull(requisicaoNovoProduto.getPreco()) || isNull(requisicaoNovoProduto.getPrecoPromocional())){
             return;
         }
         Integer compare = requisicaoNovoProduto.getPreco().compareTo(requisicaoNovoProduto.getPrecoPromocional());

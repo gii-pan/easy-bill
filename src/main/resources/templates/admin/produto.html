@@ -8,9 +8,10 @@
     <title>Produtos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
+
 <body>
 <div class="container">
-    <div class="jumbotron mb-0">
+    <div class="jumbotron mb-0" style="background-color: #b7d5ac">
         <h1 class="display-4">Produtos</h1>
     </div>
 
@@ -18,28 +19,29 @@
         <a href="/admin/produtos/formulario"><button class="btn btn-outline-secondary my-2 my-sm-0">Novo Produto</button></a>
     </nav>
 
-    <div class="card" th:each="produto : ${produto}">
-        <div class="card-header" th:text="${produto.nome}">Nome do Produto</div>
+    <div class="card mb-5" th:each="produto : ${produto}">
+        <div class="card-header" style="background-color: #93bf85; border-color: #228b22; border-width: 1px" th:text="${produto.nome}">Nome do Produto</div>
         <div class="card-body">
             <div class="row">
                 <div class="col-12, col-sm-8 mb-3">
-                    <div class="row">
-                        <div class="col-md-5">Valor: <span th:text="${produto.preco}"></span></div>
-                        <div class="col-md-7">Classe Fiscal: <span th:text="${produto.classeFiscal}"></span></div>
-                    </div>
 
-                    <div>Produto</div>
-                    <div>
-                        <img th:src="${produto.url}" src=""/>
-                    </div>
-                    <div>Descricao</div>
-                    <div>
-                        <textarea class="form-control" th:text="${produto.descricao}" >descrição do pedido</textarea>
-                    </div>
-                    <div class="col-12 col-sm-4">
+                    <div class="mb-2">ID: <span th:text="${produto.id}"></span></div>
 
+                    <div class="mb-2">Classe Fiscal: <span th:text="${produto.classeFiscal}"></span></div>
+
+                    <div class="mb-2">Valor: R$<span th:text="${produto.preco}"></span></div>
+
+                    <div class="mb-3" >Descrição</div>
+                    <div>
+                        <textarea class="form-control" th:text="${produto.descricao}">Descrição do pedido</textarea>
                     </div>
                 </div>
+
+                    <div class="col-12 col-sm-4">
+                        <div>
+                            <img class="img-thumbnail" th:src="${produto.url}" src=""/>
+                        </div>
+                    </div>
             </div>
         </div>
 
