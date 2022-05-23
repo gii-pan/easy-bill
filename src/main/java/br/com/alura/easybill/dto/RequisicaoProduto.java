@@ -5,7 +5,7 @@ import br.com.alura.easybill.model.Produto;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
-public class RequisicaoNovoProduto {
+public class RequisicaoProduto {
     @NotBlank
     @Size(max = 150)
     private String nome;
@@ -24,8 +24,8 @@ public class RequisicaoNovoProduto {
     @Size(max = 500)
     private String url;
 
-    public RequisicaoNovoProduto() {}
-    public RequisicaoNovoProduto(Produto produto) {
+    public RequisicaoProduto() {}
+    public RequisicaoProduto(Produto produto) {
         this.nome = produto.getNome();
         this.descricao = produto.getDescricao();
         this.preco = produto.getPreco();

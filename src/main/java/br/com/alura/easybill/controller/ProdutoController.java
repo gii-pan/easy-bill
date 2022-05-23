@@ -1,6 +1,6 @@
 package br.com.alura.easybill.controller;
 
-import br.com.alura.easybill.dto.RequisicaoNovoProduto;
+import br.com.alura.easybill.dto.RequisicaoProduto;
 import br.com.alura.easybill.model.Produto;
 import br.com.alura.easybill.repository.ProdutoRepository;
 import br.com.alura.easybill.validator.PrecoPromocionalValidator;
@@ -27,7 +27,7 @@ public class ProdutoController {
         this.produtoAPIController = produtoAPIController;
     }
     @GetMapping("/produtos/formulario")
-    public String formulario(RequisicaoNovoProduto requisicaoNovoProduto) {
+    public String formulario(RequisicaoProduto requisicaoProduto) {
         return "admin/produtos/formulario.html";
     }
 
@@ -39,12 +39,12 @@ public class ProdutoController {
     }
 
     @PostMapping("/produtos/novo")
-    public String novo(@Valid RequisicaoNovoProduto requisicaoNovoProduto, BindingResult result) {
-        precoPromocionalValidator.validacaoPrecoPromocional(requisicaoNovoProduto,result);
+    public String novo(@Valid RequisicaoProduto requisicaoProduto, BindingResult result) {
+        precoPromocionalValidator.validacaoPrecoPromocional(requisicaoProduto,result);
         if(result.hasErrors()){
             return "admin/produtos/formulario.html";
         }
-       Produto produto = requisicaoNovoProduto.toProduto();
+       Produto produto = requisicaoProduto.toProduto();
        produtoRepository.save(produto);
 
        return "redirect:/admin/produtos/formulario";

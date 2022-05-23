@@ -2,7 +2,7 @@ package br.com.alura.easybill.controller;
 
 import br.com.alura.easybill.dto.AtualizacaoProduto;
 import br.com.alura.easybill.dto.DevolucaoProduto;
-import br.com.alura.easybill.dto.RequisicaoNovoProduto;
+import br.com.alura.easybill.dto.RequisicaoProduto;
 import br.com.alura.easybill.model.Produto;
 import br.com.alura.easybill.repository.ProdutoRepository;
 import br.com.alura.easybill.validator.PrecoPromocionalValidator;
@@ -21,8 +21,8 @@ import java.util.Optional;
 @RestController
 public class ProdutoAPIController {
 
-    private ProdutoRepository produtoRepository;
-    private PrecoPromocionalValidator precoPromocionalValidator;
+    private final ProdutoRepository produtoRepository;
+    private final PrecoPromocionalValidator precoPromocionalValidator;
 
     public ProdutoAPIController(ProdutoRepository produtoRepository, PrecoPromocionalValidator precoPromocionalValidator){
         this.produtoRepository = produtoRepository;
@@ -43,25 +43,25 @@ public class ProdutoAPIController {
     }
 
     @PostMapping("/admin/produtos")
-    public ResponseEntity<RequisicaoNovoProduto> criacaoDeProduto(@RequestBody @Valid RequisicaoNovoProduto requisicaoNovoProduto, UriComponentsBuilder uriBuilder, BindingResult result) {
-        precoPromocionalValidator.validacaoPrecoPromocional(requisicaoNovoProduto, result);
+    public ResponseEntity<RequisicaoProduto> criacaoDeProduto(@RequestBody @Valid RequisicaoProduto requisicaoProduto, UriComponentsBuilder uriBuilder, BindingResult result) {
+        precoPromocionalValidator.validacaoPrecoPromocional(requisicaoProduto, result);
         if(result.hasErrors()){
-            return ResponseEntity.badRequest().body(new RequisicaoNovoProduto());
+            return ResponseEntity.badRequest().body(new RequisicaoProduto());
         }
-        Produto produto = requisicaoNovoProduto.toProduto();
+        Produto produto = requisicaoProduto.toProduto();
         produtoRepository.save(produto);
 
         URI uri = uriBuilder.path("/api/admin/produtos/{id}").buildAndExpand(produto.getId()).toUri();
-        return ResponseEntity.created(uri).body(new RequisicaoNovoProduto(produto));
+        return ResponseEntity.created(uri).body(new RequisicaoProduto(produto));
     }
 
     @PutMapping("/admin/produtos/{id}")
     @Transactional
-    public ResponseEntity<RequisicaoNovoProduto> atualizarProdutoPorId(@PathVariable Long id, @RequestBody @Valid AtualizacaoProduto atualizacaoProduto) {
+    public ResponseEntity<RequisicaoProduto> atualizarProdutoPorId(@PathVariable Long id, @RequestBody @Valid AtualizacaoProduto atualizacaoProduto) {
         Optional<Produto> produtoOptional = produtoRepository.findById(id);
         if(produtoOptional.isPresent()){
             Produto produto = atualizacaoProduto.atualizar(id, produtoRepository);
-            return ResponseEntity.ok(new RequisicaoNovoProduto(produto));
+            return ResponseEntity.ok(new RequisicaoProduto(produto));
         }
 
         return ResponseEntity.notFound().build();
@@ -77,4 +77,5 @@ public class ProdutoAPIController {
 
         return ResponseEntity.notFound().build();
     }
+
 }
