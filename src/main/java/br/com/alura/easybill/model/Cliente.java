@@ -39,6 +39,21 @@ public class Cliente {
     @Column(nullable = false, name = "estado")
     private String estado;
 
+    public Cliente() {}
+
+    public Cliente(Cliente cliente) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.email = email;
+        this.rua = rua;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+    }
+
     public Long getId() {
         return id;
     }
