@@ -2,10 +2,13 @@ package br.com.alura.easybill.dto;
 
 
 import br.com.alura.easybill.model.Cliente;
+import br.com.alura.easybill.model.Produto;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class DevolucaoCliente {
-
-    private Long id;
 
     private String nome;
 
@@ -38,6 +41,10 @@ public class DevolucaoCliente {
         this.bairro = cliente.getBairro();
         this.cidade = cliente.getCidade();
         this.estado = cliente.getEstado();
+    }
+
+    public static List<DevolucaoCliente> converter(List<Cliente> clientes){
+        return clientes.stream().map(DevolucaoCliente::new).collect(Collectors.toList());
     }
 
     public String getNome() {
