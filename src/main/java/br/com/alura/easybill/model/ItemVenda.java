@@ -20,13 +20,12 @@ public class ItemVenda {
     private BigDecimal precoUnitario;
 
     @Column(name = "preco_unitario_promocional")
-    private BigDecimal getPrecoUnitarioPromocional;
+    private BigDecimal precoUnitarioPromocional;
 
     @ManyToOne
     private Venda venda;
 
     @ManyToOne
-    @Column(name = "produto_id")
     private Produto produto;
 
 
@@ -54,12 +53,27 @@ public class ItemVenda {
         this.precoUnitario = precoUnitario;
     }
 
-    public BigDecimal getGetPrecoUnitarioPromocional() {
-        return getPrecoUnitarioPromocional;
+    public BigDecimal getPrecoUnitarioPromocional() {
+        return precoUnitarioPromocional;
     }
 
-    public void setGetPrecoUnitarioPromocional(BigDecimal getPrecoUnitarioPromocional) {
-        this.getPrecoUnitarioPromocional = getPrecoUnitarioPromocional;
+    public void setPrecoUnitarioPromocional(BigDecimal precoUnitarioPromocional) {
+        this.precoUnitarioPromocional = precoUnitarioPromocional;
     }
 
+    public Venda getVenda() {
+        return venda;
+    }
+
+    public void setVenda(Venda venda) {
+        this.venda = venda;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
 }

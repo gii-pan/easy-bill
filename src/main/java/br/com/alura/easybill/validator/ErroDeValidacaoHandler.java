@@ -23,16 +23,24 @@ public class ErroDeValidacaoHandler {
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<ErroDeFormulario> handle(MethodArgumentNotValidException exception){
-        List<ErroDeFormulario> erroDeFormularios = new ArrayList<>();
+    public List<MensagemDeErro> handle(MethodArgumentNotValidException exception){
+        List<MensagemDeErro> mensagemDeErros = new ArrayList<>();
 
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
         fieldErrors.forEach(e ->{
             String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
-            ErroDeFormulario error = new ErroDeFormulario(e.getField(), mensagem);
-            erroDeFormularios.add(error);
+            MensagemDeErro error = new MensagemDeErro(e.getField(), mensagem);
+            mensagemDeErros.add(error);
         });
 
-        return erroDeFormularios;
+        return mensagemDeErros;
+    }
+
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public List<MensagemDeErro> handlerNotFound (NotFoundException exception){
+        List<MensagemDeErro> mensagens = new ArrayList<>();
+        mensagens.add(new MensagemDeErro("Cliente", exception.getMessage()));
+        return mensagens;
     }
 }

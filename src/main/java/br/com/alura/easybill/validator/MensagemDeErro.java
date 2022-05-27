@@ -1,11 +1,11 @@
 package br.com.alura.easybill.validator;
 
-public class ErroDeFormulario {
+public class MensagemDeErro {
 
     private String campo;
     private String erro;
 
-    public ErroDeFormulario(String campo, String erro) {
+    public MensagemDeErro(String campo, String erro) {
         this.campo = campo;
         this.erro = erro;
     }

@@ -13,7 +13,7 @@ public class Produto {
     @Column(length = 150, nullable = false, name = "nome")
     private String nome;
 
-    @Column(length = 500, nullable = false, name = "url")
+    @Column(length = 500, nullable = false, name = "url_imagem")
     private String url;
 
     @Column(length = 1000, name = "descricao")

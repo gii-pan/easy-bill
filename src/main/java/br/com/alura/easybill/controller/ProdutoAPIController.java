@@ -46,7 +46,7 @@ public class ProdutoAPIController {
     public ResponseEntity<RequisicaoProduto> criacaoDeProduto(@RequestBody @Valid RequisicaoProduto requisicaoProduto, UriComponentsBuilder uriBuilder, BindingResult result) {
         precoPromocionalValidator.validacaoPrecoPromocional(requisicaoProduto, result);
         if(result.hasErrors()){
-            return ResponseEntity.badRequest().body(new RequisicaoProduto());
+            return ResponseEntity.badRequest().build();
         }
         Produto produto = requisicaoProduto.toProduto();
         produtoRepository.save(produto);

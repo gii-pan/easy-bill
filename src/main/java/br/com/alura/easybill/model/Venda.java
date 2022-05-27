@@ -3,7 +3,7 @@ package br.com.alura.easybill.model;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "vendas")
 public class Venda {
 
     @Id
@@ -13,11 +13,15 @@ public class Venda {
     @Column(name = "data_realizacao")
     private LocalDateTime dataRealizacao;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @ManyToOne
-    @Column(name = "cliente_id")
     private Cliente cliente;
+
+    public Long getId() {
+        return id;
+    }
 
     public LocalDateTime getDataRealizacao() {
         return dataRealizacao;
@@ -27,11 +31,20 @@ public class Venda {
         this.dataRealizacao = dataRealizacao;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
 }

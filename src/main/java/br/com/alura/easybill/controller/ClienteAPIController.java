@@ -1,7 +1,6 @@
 package br.com.alura.easybill.controller;
 
 import br.com.alura.easybill.dto.DevolucaoCliente;
-import br.com.alura.easybill.dto.DevolucaoProduto;
 import br.com.alura.easybill.dto.RequisicaoCliente;
 import br.com.alura.easybill.model.Cliente;
 import br.com.alura.easybill.repository.ClienteRepository;
@@ -12,7 +11,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +27,7 @@ public class ClienteAPIController {
     @PostMapping("/clientes")
     public ResponseEntity<RequisicaoCliente> criacaoDeCliente(@RequestBody @Valid RequisicaoCliente requisicaoCliente, UriComponentsBuilder uriBuilder, BindingResult result) {
         if(result.hasErrors()){
-            return ResponseEntity.badRequest().body(new RequisicaoCliente());
+            return ResponseEntity.badRequest().build();
         }
         Cliente cliente = requisicaoCliente.toCliente();
         clienteRepository.save(cliente);
@@ -46,12 +44,12 @@ public class ClienteAPIController {
     }
 
     @GetMapping("/admin/clientes")
-    public List<DevolucaoCliente> retornaClientePorEstado(@RequestParam(required = false) String estado){
+    public ResponseEntity<List<DevolucaoCliente>> retornaClientePorEstado(@RequestParam(required = false) String estado){
         if(estado == null) {
             List<Cliente> cliente = clienteRepository.findAll();
-            return DevolucaoCliente.converter(cliente);
+            return ResponseEntity.ok(DevolucaoCliente.converter(cliente));
         }
         List<Cliente> clientePorEstado = clienteRepository.findByEstado(estado);
-        return DevolucaoCliente.converter(clientePorEstado);
+        return ResponseEntity.ok(DevolucaoCliente.converter(clientePorEstado));
     }
 }
