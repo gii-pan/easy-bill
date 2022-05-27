@@ -21,38 +21,7 @@ public class Cliente {
     @Column(nullable = false, name = "email")
     private String email;
 
-    @Column(nullable = false, name = "rua")
-    private String rua;
-
-    @Column(nullable = false, name = "numero")
-    private String numero;
-
-    @Column(name = "complemento")
-    private String complemento;
-
-    @Column(nullable = false, name = "bairro")
-    private String bairro;
-
-    @Column(nullable = false, name = "cidade")
-    private String cidade;
-
-    @Column(nullable = false, name = "estado")
-    private String estado;
-
-    public Cliente() {}
-
-    public Cliente(Cliente cliente) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.email = email;
-        this.rua = rua;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
-    }
+    private Endereco endereco;
 
     public Long getId() {
         return id;
@@ -90,51 +59,11 @@ public class Cliente {
         this.email = email;
     }
 
-    public String getRua() {
-        return rua;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }

@@ -35,12 +35,12 @@ public class DevolucaoCliente {
         this.cpf = cliente.getCpf();
         this.telefone = cliente.getTelefone();
         this.email = cliente.getEmail();
-        this.rua = cliente.getRua();
-        this.numero = cliente.getNumero();
-        this.complemento = cliente.getComplemento();
-        this.bairro = cliente.getBairro();
-        this.cidade = cliente.getCidade();
-        this.estado = cliente.getEstado();
+        this.rua = cliente.getEndereco().getRua();
+        this.numero = cliente.getEndereco().getNumero();
+        this.complemento = cliente.getEndereco().getComplemento();
+        this.bairro = cliente.getEndereco().getBairro();
+        this.cidade = cliente.getEndereco().getCidade();
+        this.estado = cliente.getEndereco().getEstado();
     }
 
     public static List<DevolucaoCliente> converter(List<Cliente> clientes){

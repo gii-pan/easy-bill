@@ -5,6 +5,7 @@ import br.com.alura.easybill.dto.RequisicaoItemVenda;
 import br.com.alura.easybill.dto.RequisicaoVenda;
 import br.com.alura.easybill.model.ItemVenda;
 import br.com.alura.easybill.model.Venda;
+import br.com.alura.easybill.projection.VendasPorProdutoProjection;
 import br.com.alura.easybill.repository.ItemVendaRepository;
 import br.com.alura.easybill.repository.VendaRepository;
 import br.com.alura.easybill.service.VendaService;
@@ -58,5 +59,10 @@ public class VendaAPIController {
         }
 
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/admin/relatorios/vendas-por-produto")
+    public ResponseEntity<List<VendasPorProdutoProjection>> retornaRelatorio(){
+      return ResponseEntity.ok(itemVendaRepository.relatorioVendaPorProduto());
     }
 }
