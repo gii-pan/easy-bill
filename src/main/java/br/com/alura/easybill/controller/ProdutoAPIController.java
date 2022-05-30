@@ -6,6 +6,11 @@ import br.com.alura.easybill.dto.RequisicaoProduto;
 import br.com.alura.easybill.model.Produto;
 import br.com.alura.easybill.repository.ProdutoRepository;
 import br.com.alura.easybill.validator.PrecoPromocionalValidator;
+import org.apache.coyote.Response;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -29,10 +34,24 @@ public class ProdutoAPIController {
         this.precoPromocionalValidator = precoPromocionalValidator;
     }
 
-    @GetMapping("/produtos")
-    public List<DevolucaoProduto> listagemDeProdutos() {
+    @GetMapping("/formulario/produtos")
+    public List<DevolucaoProduto> listagemDeProdutosFormulario() {
         List<Produto> produtos = produtoRepository.findAll();
         return DevolucaoProduto.converter(produtos);
+    }
+
+    @GetMapping("/produtos")
+    public ResponseEntity<List<DevolucaoProduto>> listagemDeProdutos(@RequestParam(required = false) Integer pagina) {
+        if(pagina == null) {
+            Pageable pageable = PageRequest.of(0, 5, Sort.by(Sort.Direction.ASC, "nome"));
+            Page<Produto> produtos = produtoRepository.findAll(pageable);
+
+            return ResponseEntity.ok(DevolucaoProduto.converterPageParaDevolucaoProduto(produtos));
+        }
+        Pageable pageable = PageRequest.of(pagina, 5, Sort.by(Sort.Direction.ASC, "nome"));
+        Page<Produto> produtos = produtoRepository.findAll(pageable);
+
+        return ResponseEntity.ok(DevolucaoProduto.converterPageParaDevolucaoProduto(produtos));
     }
 
     @GetMapping("/produtos/{id}")

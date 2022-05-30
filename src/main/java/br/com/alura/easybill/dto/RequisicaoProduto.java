@@ -22,7 +22,7 @@ public class RequisicaoProduto {
     private String classeFiscal;
     @NotBlank
     @Size(max = 500)
-    private String url;
+    private String urlImagem;
 
     public RequisicaoProduto() {}
     public RequisicaoProduto(Produto produto) {
@@ -31,7 +31,7 @@ public class RequisicaoProduto {
         this.preco = produto.getPreco();
         this.precoPromocional = produto.getPrecoPromocional();
         this.classeFiscal = produto.getClasseFiscal();
-        this.url = produto.getUrl();
+        this.urlImagem = produto.getUrlImagem();
     }
     public String getNome() {
         return nome;
@@ -73,19 +73,19 @@ public class RequisicaoProduto {
         this.classeFiscal = classeFiscal;
     }
 
-    public String getUrl() {
-        return url;
+    public String getUrlImagem() {
+        return urlImagem;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrlImagem(String url) {
+        this.urlImagem = url;
     }
 
     public Produto toProduto() {
         Produto produto = new Produto();
         produto.setNome(nome);
         produto.setDescricao(descricao);
-        produto.setUrl(url);
+        produto.setUrlImagem(urlImagem);
         produto.setPreco(preco);
         produto.setPrecoPromocional(precoPromocional);
         produto.setClasseFiscal(classeFiscal);

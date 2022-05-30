@@ -9,8 +9,7 @@ import java.util.List;
 
 public interface ItemVendaRepository extends JpaRepository<ItemVenda, Long> {
     List<ItemVenda> findAllByVenda_Id(Long id);
-    //SELECT P.NOME, SUM(QUANTIDADE) FROM ITENS_VENDA I JOIN PRODUTOS P ON P.ID=I.PRODUTO_ID GROUP BY (PRODUTO_ID);
-
+    //@Query("SELECT P.nome , SUM(I.quantidade)  FROM ItemVenda I  JOIN Produto P ON P.id=I.produtoId GROUP BY (I.produtoId)")
     @Query(value = "SELECT P.NOME AS \"NOMEPRODUTO\", SUM(QUANTIDADE) AS \"QUANTIDADE\" FROM ITENS_VENDA I JOIN PRODUTOS P ON P.ID=I.PRODUTO_ID GROUP BY (PRODUTO_ID)", nativeQuery = true)
     List<VendasPorProdutoProjection> relatorioVendaPorProduto();
 }

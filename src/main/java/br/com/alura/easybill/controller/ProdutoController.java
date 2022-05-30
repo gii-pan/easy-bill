@@ -34,7 +34,7 @@ public class ProdutoController {
     @GetMapping("/produto")
     public ModelAndView listaProdutos(){
         ModelAndView modelAndView = new ModelAndView("admin/produto");
-        modelAndView.addObject("produto", produtoAPIController.listagemDeProdutos());
+        modelAndView.addObject("produto", produtoAPIController.listagemDeProdutosFormulario());
         return modelAndView;
     }
 

@@ -1,9 +1,11 @@
 package br.com.alura.easybill.dto;
 
 import br.com.alura.easybill.model.Produto;
+import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class DevolucaoProduto {
@@ -18,28 +20,16 @@ public class DevolucaoProduto {
 
     private String classeFiscal;
 
-    private String url;
+    private String urlImagem;
 
+    public DevolucaoProduto() {}
     public DevolucaoProduto(Produto produto){
         this.id = produto.getId();
         this.nome = produto.getNome();
         this.descricao = getDescricaoResumida(produto.getDescricao());
         this.preco = produto.getPrecoPromocional() != null ? produto.getPrecoPromocional() : produto.getPreco();
         this.classeFiscal = produto.getClasseFiscal();
-        this.url = produto.getUrl();;
-    }
-
-    public static List<DevolucaoProduto> converter(List<Produto> produtos){
-        return produtos.stream().map(DevolucaoProduto::new).collect(Collectors.toList());
-    }
-
-    private String getDescricaoResumida(String descricao){
-        if(descricao.length() <= 250){
-            return descricao;
-        }
-        String descricaoTruncada = descricao.substring(0,247);
-
-        return descricaoTruncada + "...";
+        this.urlImagem = produto.getUrlImagem();;
     }
 
     public Long getId() {
@@ -62,5 +52,22 @@ public class DevolucaoProduto {
         return classeFiscal;
     }
 
-    public String getUrl() {return url; }
+    public String getUrlImagem() {return urlImagem; }
+
+    public static List<DevolucaoProduto> converter(List<Produto> produtos){
+        return produtos.stream().map(DevolucaoProduto::new).collect(Collectors.toList());
+    }
+
+    public static List<DevolucaoProduto> converterPageParaDevolucaoProduto(Page<Produto> pagina) {
+        return pagina.stream().map(DevolucaoProduto::new).collect(Collectors.toList());
+    }
+
+    private String getDescricaoResumida(String descricao){
+        if(descricao.length() <= 250){
+            return descricao;
+        }
+        String descricaoTruncada = descricao.substring(0,247);
+
+        return descricaoTruncada + "...";
+    }
 }

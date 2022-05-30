@@ -29,7 +29,7 @@ public class AtualizacaoProduto {
 
     @NotBlank
     @Size(max = 500)
-    private String url;
+    private String urlImagem;
 
     public String getNome() {
         return nome;
@@ -71,12 +71,12 @@ public class AtualizacaoProduto {
         this.classeFiscal = classeFiscal;
     }
 
-    public String getUrl() {
-        return url;
+    public String getUrlImagem() {
+        return urlImagem;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrlImagem(String url) {
+        this.urlImagem = url;
     }
 
     public Produto atualizar(Long id, ProdutoRepository produtoRepository) {
@@ -84,7 +84,7 @@ public class AtualizacaoProduto {
 
         produto.setNome(this.nome);
         produto.setDescricao(this.descricao);
-        produto.setUrl(this.url);
+        produto.setUrlImagem(this.urlImagem);
         produto.setPreco(this.preco);
         produto.setPrecoPromocional(this.precoPromocional);
         produto.setClasseFiscal(this.classeFiscal);

@@ -14,7 +14,7 @@ public class Produto {
     private String nome;
 
     @Column(length = 500, nullable = false, name = "url_imagem")
-    private String url;
+    private String urlImagem;
 
     @Column(length = 1000, name = "descricao")
     private String descricao;
@@ -40,12 +40,12 @@ public class Produto {
         this.nome = nome;
     }
 
-    public String getUrl() {
-        return url;
+    public String getUrlImagem() {
+        return urlImagem;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrlImagem(String url) {
+        this.urlImagem = url;
     }
 
     public String getDescricao() {
