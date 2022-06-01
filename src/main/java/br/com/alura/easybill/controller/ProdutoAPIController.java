@@ -7,10 +7,13 @@ import br.com.alura.easybill.model.Produto;
 import br.com.alura.easybill.repository.ProdutoRepository;
 import br.com.alura.easybill.validator.PrecoPromocionalValidator;
 import org.apache.coyote.Response;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -41,18 +44,16 @@ public class ProdutoAPIController {
     }
 
     @GetMapping("/produtos")
-    public ResponseEntity<List<DevolucaoProduto>> listagemDeProdutos(@RequestParam(required = false) Integer pagina) {
-        if(pagina == null) {
-            Pageable pageable = PageRequest.of(0, 5, Sort.by(Sort.Direction.ASC, "nome"));
-            Page<Produto> produtos = produtoRepository.findAll(pageable);
+    @Cacheable(value="listagemDeProdutos")
+    public ResponseEntity<Page<DevolucaoProduto>> listagemDeProdutos(@PageableDefault(size = 5,sort="nome", direction = Sort.Direction.ASC)  Pageable pagina) {
+        Page<Produto> produtos = produtoRepository.findAll(pagina);
 
-            return ResponseEntity.ok(DevolucaoProduto.converterPageParaDevolucaoProduto(produtos));
-        }
-        Pageable pageable = PageRequest.of(pagina, 5, Sort.by(Sort.Direction.ASC, "nome"));
-        Page<Produto> produtos = produtoRepository.findAll(pageable);
-
-        return ResponseEntity.ok(DevolucaoProduto.converterPageParaDevolucaoProduto(produtos));
+        return ResponseEntity.ok(DevolucaoProduto.converterPageDevolucaoProduto(produtos));
     }
+
+    @GetMapping("/aW52YWxpZGEgY2FjaGUgbGlzdGFnZW0gcHJvZHV0b3M")
+    @CacheEvict(value = "listagemDeProdutos", allEntries = true)
+    public void resetaCache() {}
 
     @GetMapping("/produtos/{id}")
     public ResponseEntity<DevolucaoProduto> produtoPorId(@PathVariable Long id) {

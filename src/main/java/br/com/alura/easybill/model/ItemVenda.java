@@ -3,7 +3,8 @@ package br.com.alura.easybill.model;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity(name = "itens_venda")
+@Entity
+@Table(name = "itens_venda")
 public class ItemVenda {
 
     @Id

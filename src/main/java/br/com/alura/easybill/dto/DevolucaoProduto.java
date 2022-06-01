@@ -58,8 +58,8 @@ public class DevolucaoProduto {
         return produtos.stream().map(DevolucaoProduto::new).collect(Collectors.toList());
     }
 
-    public static List<DevolucaoProduto> converterPageParaDevolucaoProduto(Page<Produto> pagina) {
-        return pagina.stream().map(DevolucaoProduto::new).collect(Collectors.toList());
+    public static Page<DevolucaoProduto> converterPageDevolucaoProduto(Page<Produto> pagina) {
+        return pagina.map(DevolucaoProduto::new);
     }
 
     private String getDescricaoResumida(String descricao){
