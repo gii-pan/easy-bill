@@ -45,8 +45,15 @@ public class ProdutoAPIController {
 
     @GetMapping("/produtos")
     @Cacheable(value="listagemDeProdutos")
-    public ResponseEntity<Page<DevolucaoProduto>> listagemDeProdutos(@PageableDefault(size = 5,sort="nome", direction = Sort.Direction.ASC)  Pageable pagina) {
-        Page<Produto> produtos = produtoRepository.findAll(pagina);
+    public ResponseEntity<Page<DevolucaoProduto>> listagemDeProdutos(@RequestParam(required = false) Integer pagina) {
+        if(pagina == null) {
+            Pageable pageable = PageRequest.of(0, 5, Sort.by(Sort.Direction.ASC, "nome"));
+            Page<Produto> produtos = produtoRepository.findAll(pageable);
+
+            return ResponseEntity.ok(DevolucaoProduto.converterPageDevolucaoProduto(produtos));
+        }
+        Pageable pageable = PageRequest.of(pagina, 5, Sort.by(Sort.Direction.ASC, "nome"));
+        Page<Produto> produtos = produtoRepository.findAll(pageable);
 
         return ResponseEntity.ok(DevolucaoProduto.converterPageDevolucaoProduto(produtos));
     }

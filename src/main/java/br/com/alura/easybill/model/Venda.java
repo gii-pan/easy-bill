@@ -47,4 +47,6 @@ public class Venda {
         this.cliente = cliente;
     }
 
+    public void setId(long l) {
+    }
 }
