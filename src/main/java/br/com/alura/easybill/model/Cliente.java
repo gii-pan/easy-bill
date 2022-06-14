@@ -67,6 +67,5 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public void setId(long l) {
-    }
+    public void setId(long id) { this.id = id; }
 }

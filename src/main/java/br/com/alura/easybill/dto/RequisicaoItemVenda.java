@@ -18,7 +18,7 @@ public class RequisicaoItemVenda {
     @Size(max=200)
     private String observacao;
     @NotNull @NotEmpty @Positive
-    private int produtoId;
+    private long produtoId;
 
     public int getQuantidade() {
         return quantidade;
@@ -36,11 +36,11 @@ public class RequisicaoItemVenda {
         this.observacao = observacao;
     }
 
-    public int getProdutoId() {
+    public long getProdutoId() {
         return produtoId;
     }
 
-    public void setProdutoId(int produtoId) {
+    public void setProdutoId(Long produtoId) {
         this.produtoId = produtoId;
     }
 
@@ -55,9 +55,9 @@ public class RequisicaoItemVenda {
         item.setObservacao(observacao);
         item.setQuantidade(quantidade);
         item.setVenda(venda);
-        item.setProduto(produtoRepository.findById((long) produtoId).get());
-        item.setPrecoUnitario(retornaValorDoPrecoUnitario(produtoRepository.findById((long) produtoId).get().getPreco()));
-        item.setPrecoUnitarioPromocional(produtoRepository.findById((long) produtoId).get().getPrecoPromocional());
+        item.setProduto(produtoRepository.findById(produtoId).get());
+        item.setPrecoUnitario(retornaValorDoPrecoUnitario(produtoRepository.findById(produtoId).get().getPreco()));
+        item.setPrecoUnitarioPromocional(produtoRepository.findById(produtoId).get().getPrecoPromocional());
 
         return item;
     }

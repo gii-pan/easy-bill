@@ -79,4 +79,6 @@ public class Produto {
     public void setClasseFiscal(String classeFiscal) {
         this.classeFiscal = classeFiscal;
     }
+
+    public void setId(Long id) { this.id = id; }
 }

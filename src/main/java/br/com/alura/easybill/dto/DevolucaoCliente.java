@@ -2,9 +2,7 @@ package br.com.alura.easybill.dto;
 
 
 import br.com.alura.easybill.model.Cliente;
-import br.com.alura.easybill.model.Produto;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -79,6 +79,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>easybill</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
