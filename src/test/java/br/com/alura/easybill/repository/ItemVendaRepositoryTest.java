@@ -2,12 +2,10 @@ package br.com.alura.easybill.repository;
 
 import br.com.alura.easybill.model.*;
 import br.com.alura.easybill.projection.VendasPorProdutoProjection;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.math.BigDecimal;
@@ -16,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertNull;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -93,7 +90,7 @@ public class ItemVendaRepositoryTest {
         venda.setDataRealizacao(LocalDateTime.now());
         venda.setStatus(Status.REALIZADA);
         venda.setCliente(cliente);
-        venda.setId(1l);
+//        venda.setId(1l);
 
         vendaRepository.save(venda);
 

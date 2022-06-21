@@ -6,7 +6,6 @@ import br.com.alura.easybill.model.Cliente;
 import br.com.alura.easybill.model.Endereco;
 import br.com.alura.easybill.model.Produto;
 import br.com.alura.easybill.repository.ClienteRepository;
-import br.com.alura.easybill.repository.ItemVendaRepository;
 import br.com.alura.easybill.repository.ProdutoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -16,15 +15,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultHandler;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.net.URI;
-import java.net.URISyntaxException;
 
 @SpringBootTest
+@Transactional
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 class VendaAPIControllerTest {
@@ -37,7 +36,6 @@ class VendaAPIControllerTest {
 
     @Autowired
     private ProdutoRepository produtoRepository;
-
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
